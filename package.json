@@ -13,7 +13,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "keywords": [
-    "pwa", "vue", "vuex", "vuetify", "firebase"
+    "pwa",
+    "vue",
+    "vuex",
+    "vuetify",
+    "firebase"
   ],
   "dependencies": {
     "firebase": "^4.7.0",
