@@ -28,7 +28,7 @@
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link to="/home" tag="span" style="cursor: pointer">
-          Developers Meetup
+          oi
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
