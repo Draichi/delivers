@@ -1,6 +1,11 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer fixed app v-model="sideNav" :mini-variant="true">
+  <v-app>
+    <v-navigation-drawer
+      fixed
+      app
+      v-model="sideNav"
+      :mini-variant="true"
+    >
       <v-list v-for="item in menuItems" :key="item.title">
         <v-tooltip right>
           <v-list-tile :to="item.link" slot="activator">
@@ -24,16 +29,26 @@
         </v-tooltip>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app color="light-blue">
+    <v-toolbar app color="yellow">
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/home" tag="span" style="cursor: pointer">
+        <router-link
+          to="/home"
+          tag="span"
+          style="cursor: pointer"
+        >
           oi
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn v-if="!userAuthenticaded" :to="item.link" flat  v-for="item in menuItems" :key="item.title">
+        <v-btn 
+          v-if="!userAuthenticaded"
+          :to="item.link"
+          flat
+          v-for="item in menuItems"
+          :key="item.title"
+        >
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
@@ -52,7 +67,7 @@
           <v-btn
           fixed
           fab
-          color="primary"
+          color="yellow darken-1"
           bottom
           right
           style="margin-bottom: 10vh;"
@@ -66,16 +81,25 @@
       </v-card-text>
     </v-content>
     <v-card height="10vh">
-      <v-bottom-nav value="true" color="secondary">
-        <v-btn to="/home" flat color="light-blue">
+      <v-bottom-nav value="true" color="yellow darken-1">
+        <v-btn
+          to="/home"
+          flat
+        >
           <span>Home</span>
           <v-icon>home</v-icon>
         </v-btn>
-        <v-btn flat to="/registered" color="light-blue">
+        <v-btn
+          flat
+          to="/registered"
+        >
           <span>Registered</span>
           <v-icon>favorite</v-icon>
         </v-btn>
-        <v-btn flat to="/profile" color="light-blue">
+        <v-btn
+          flat
+          to="/profile"
+        >
           <span>About</span>
           <v-icon>help</v-icon>
         </v-btn>

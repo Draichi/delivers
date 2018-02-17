@@ -14,7 +14,7 @@
                 <v-flex class="text-xs-center">
                   <h2>Testing ?</h2>
                   <h4>Login: test@test.com</h4>
-                  <h4>Password: lucas123</h4>
+                  <h4>Password: password</h4>
                 </v-flex>
               </v-layout>
             </v-container>

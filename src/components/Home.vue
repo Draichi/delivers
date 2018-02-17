@@ -30,8 +30,11 @@
                   </v-container>
                 </v-card-media>
                 <v-card-actions>
-                  <v-btn flat color="light-blue lighten-2" :to="'meetups/' + meetup.id">
-                    explore</v-btn>
+                  <v-btn
+                    flat
+                    color="green darken-4"
+                    :to="'meetups/' + meetup.id">
+                    pedir</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
