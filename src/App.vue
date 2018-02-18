@@ -37,7 +37,7 @@
           tag="span"
           style="cursor: pointer"
         >
-          oi
+          
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -93,8 +93,8 @@
           flat
           to="/registered"
         >
-          <span>Registered</span>
-          <v-icon>favorite</v-icon>
+          <span>Pedidos</span>
+          <v-icon>shopping_cart</v-icon>
         </v-btn>
         <v-btn
           flat
@@ -123,7 +123,7 @@
         ]
         if (this.userAuthenticaded) {
           menuItems = [
-            { icon: 'favorite', title: 'Registered', link: '/registered' },
+            { icon: 'favorite', title: 'Pedidos', link: '/registered' },
             { icon: 'help', title: 'About', link: '/profile' }
           ]
         }
