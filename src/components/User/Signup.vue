@@ -15,15 +15,31 @@
                   <v-flex xs12>
                     <v-text-field
                       name="email"
-                      label="Mail"
+                      label="Email"
                       id="mail"
                       v-model="email"
                       type="email"
                       required
                     ></v-text-field>
                     <v-text-field
+                      name="endereco"
+                      label="Endereço"
+                      id="endereco"
+                      v-model="endereco"
+                      type="endereco"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      name="numero"
+                      label="Número"
+                      id="numero"
+                      v-model="numero"
+                      type="numero"
+                      required
+                    ></v-text-field>
+                    <v-text-field
                       name="password"
-                      label="Password"
+                      label="Senha"
                       id="password"
                       v-model="password"
                       type="password"
@@ -31,12 +47,22 @@
                     > </v-text-field>
                     <v-text-field
                       name="confirmPassword"
-                      label="Confirm Password"
+                      label="Confirma Senha"
                       id="confirmPassword"
                       v-model="confirmPassword"
                       type="password"
                       :rules="[comparePasswords]"
                     ></v-text-field>
+                    <v-radio-group v-model="radioGroup">
+                      <v-radio
+                        label="Cliente"
+                        value="cliente"
+                      ></v-radio>
+                      <v-radio
+                        label="Fornecedor"
+                        value="fornecedor"
+                      ></v-radio>
+                    </v-radio-group>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -45,7 +71,7 @@
                       type="submit"
                       :loading="loading"
                       :disabled="loading"
-                    >Sign up
+                    >Cadastrar
                       <span slot="loader" class="custom-loader">
                         <v-icon light>cached</v-icon>
                       </span>
@@ -66,8 +92,11 @@ export default {
   data () {
     return {
       email: '',
+      numero: '',
+      endereco: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      radioGroup: 1
     }
   },
   computed: {
@@ -93,7 +122,12 @@ export default {
   },
   methods: {
     onSignUp () {
-      this.$store.dispatch('UserSignUp', {email: this.email, password: this.password})
+      this.$store.dispatch('UserSignUp', {
+        email: this.email,
+        password: this.password,
+        numero: this.numero,
+        endereco: this.endereco
+      })
     },
     onDismissed () {
       this.$store.dispatch('clearError')
