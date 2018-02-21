@@ -14,28 +14,37 @@
       <v-flex xs12>
         <v-container fluid grid-list-md>
           <v-layout row wrap>
-            <v-flex
-              v-bind="{ [`xs${flex}`]: true }"
-              v-for="meetup in meetups"
-              :key="meetup.title"
+            <v-flex 
+              xs12
+              sm6
+              offset-sm3
             >
               <v-card>
-                <v-card-media :src="meetup.imageUrl" height="200px">
-                  <v-container fill-height fluid>
-                    <v-layout fill-height>
-                      <v-flex xs12 align-end flexbox>
-                        <span class="headline" v-text="meetup.title"></span>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-card-actions>
-                  <v-btn
-                    flat
-                    color="green darken-4"
-                    :to="'meetups/' + meetup.id">
-                    pedir</v-btn>
-                </v-card-actions>
+                <v-list three-line>
+                  <template v-for="(item, index) in meetups">
+                    <v-list-tile v-bind:key="index" @click="onLoadMeetup(item.id)">
+                      <v-list-tile-avatar>
+                        <img :src="item.imageUrl" alt="">
+                      </v-list-tile-avatar>
+                      <v-list-tile-content>
+                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        <v-list-tile-sub-title>
+                          <v-icon>
+                            star
+                            star
+                            star
+                            star
+                            star_half
+                          </v-icon>
+                        </v-list-tile-sub-title>
+                      </v-list-tile-content>
+                      <v-list-tile-action>
+                        <v-list-tile-action-text>{{ item.title }}</v-list-tile-action-text>
+                      </v-list-tile-action>
+                    </v-list-tile>
+                    <v-divider v-if="index + 1 < meetups.length" :key="index"></v-divider>
+                  </template>
+                </v-list>
               </v-card>
             </v-flex>
           </v-layout>

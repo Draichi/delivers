@@ -72,9 +72,7 @@ export default {
             const newUser = {
               id: user.uid,
               registeredMeetups: [],
-              fbKeys: {},
-              numero: payload.numero,
-              endereco: payload.endereco
+              fbKeys: {}
             }
             commit('setUser', newUser)
           }

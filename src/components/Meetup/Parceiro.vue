@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
-        <h2>Create a new Meetup</h2>
+        <h2>Cadastrar</h2>
       </v-flex>
     </v-layout>
     <v-layout>
@@ -12,7 +12,7 @@
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
                 name="title"
-                label="Title"
+                label="Produto"
                 id="title"
                 required
                 v-model="title"
@@ -24,7 +24,7 @@
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
                 name="location"
-                label="Location"
+                label="Quantidade"
                 id="location"
                 required
                 v-model="location"
@@ -36,7 +36,7 @@
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
                 name="src"
-                label="Image URL"
+                label="Preço"
                 id="src"
                 required
                 v-model="imageUrl"
@@ -53,7 +53,7 @@
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
                 name="description"
-                label="Description"
+                label="Endereço"
                 id="description"
                 required
                 multi-line

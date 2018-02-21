@@ -29,7 +29,7 @@
         </v-tooltip>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app color="yellow">
+    <v-toolbar app color="light-blue" dark>
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link
@@ -37,7 +37,7 @@
           tag="span"
           style="cursor: pointer"
         >
-          
+          {{ this.$route.name }}
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -62,7 +62,7 @@
       <router-view>
         <v-container fluid></v-container>
       </router-view>
-      <!-- <v-card-text v-if="this.$route.path!=='/meetup/new'">
+      <!-- <v-card-text v-if="this.$route.path!=='/parceiro/novo'">
         <v-tooltip left>
           <v-btn
           fixed
@@ -71,7 +71,7 @@
           bottom
           right
           style="margin-bottom: 10vh;"
-          to="/meetup/new"
+          to="/parceiro/novo"
           slot="activator"
           >
             <v-icon>add</v-icon>
@@ -80,31 +80,6 @@
         </v-tooltip>
       </v-card-text> -->
     </v-content>
-    <v-card height="10vh">
-      <v-bottom-nav value="true" color="yellow darken-1">
-        <v-btn
-          to="/home"
-          flat
-        >
-          <span>Home</span>
-          <v-icon>home</v-icon>
-        </v-btn>
-        <v-btn
-          flat
-          to="/registered"
-        >
-          <span>Pedidos</span>
-          <v-icon>shopping_cart</v-icon>
-        </v-btn>
-        <v-btn
-          flat
-          to="/profile"
-        >
-          <span>About</span>
-          <v-icon>help</v-icon>
-        </v-btn>
-      </v-bottom-nav>
-    </v-card>
   </v-app>
 </template>
 

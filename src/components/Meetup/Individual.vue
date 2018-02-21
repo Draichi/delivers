@@ -1,0 +1,137 @@
+<template>
+  <v-container>
+    <v-layout row v-if="loading">
+      <v-flex xs12 class="text-xs-center">
+        <v-progress-circular 
+          indeterminate 
+          class="primary--text"
+          :width="10"
+          :height="100"
+        ></v-progress-circular>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap v-else>
+      <v-flex xs12>
+        <v-card>
+          <v-list three-line>
+            <template>
+              <v-list-tile>
+                <v-list-tile-avatar>
+                  <img :src="item.imageUrl" alt="">
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                  <v-list-tile-sub-title>
+                    {{ item.description }}
+                    <v-icon>
+                      star
+                      star
+                      star
+                      star
+                      star_half
+                    </v-icon>
+                  </v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-list-tile-action-text>{{ item.location }}</v-list-tile-action-text>
+                </v-list-tile-action>
+              </v-list-tile>
+            </template>
+          </v-list>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 offset-sm3 class="pt-3">
+        <v-card>
+          <v-card-title>
+            <div class="subheading">Como deseja pagar?</div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn-toggle v-model="toggle_pagamento">
+              <v-btn small>
+                Crédito
+                <v-icon>credit_card</v-icon>
+              </v-btn>
+              <v-btn small>
+                Débito
+                <v-icon>credit_card</v-icon>
+              </v-btn>
+              <v-btn small>
+                Dinheiro
+                <v-icon>account_balance_wallet</v-icon>
+              </v-btn>
+            </v-btn-toggle>
+          </v-card-actions>
+          <v-card-title>
+            <div class="subheading">Preencha seus dados</div>
+          </v-card-title>
+          <v-card-actions>
+            <v-form v-model="valid" class="px-2">
+              <v-text-field
+                label="Seu nome"
+                v-model="nome"
+                required
+              ></v-text-field>
+              <v-text-field
+                label="Seu celular"
+                v-model="celular"
+                required
+              ></v-text-field>
+            </v-form>
+          </v-card-actions>
+          <v-card-title>
+            <div class="subheading">Endereço</div>
+          </v-card-title>
+          <v-card-actions>
+            <v-form class="px-2">
+              <v-text-field
+                label="Rua"
+                v-model="endereco"
+                required
+              ></v-text-field>
+              <v-text-field
+                label="Numero"
+                v-model="numero"
+                required
+              ></v-text-field>
+            </v-form>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-btn block color="teal" dark>REALIZAR PEDIDO</v-btn>
+  </v-container>
+</template>
+
+<script>
+export default {
+  props: ['id'],
+  data () {
+    return {
+      toggle_pagamento: null,
+      valid: false,
+      nome: '',
+      celular: '',
+      endereco: '',
+      numero: ''
+    }
+  },
+  computed: {
+    item () {
+      return this.$store.getters.loadedMeetup(this.id)
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    userIsTheCreator () {
+      if (!this.userIsAuthenticated) {
+        return false
+      } else {
+        return this.$store.getters.user.id === this.meetup.creatorId
+      }
+    },
+    loading () {
+      return this.$store.getters.loading
+    }
+  }
+}
+</script>
