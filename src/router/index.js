@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Registered from '@/components/Meetup/Registered'
-import Parceiro from '@/components/Meetup/Parceiro'
+import CadastrarParceiro from '@/components/Meetup/CadastrarParceiro'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
@@ -37,7 +37,7 @@ export default new Router({
     {
       path: '/parceiro/novo',
       name: 'Cadastrar Parceiro',
-      component: Parceiro,
+      component: CadastrarParceiro,
       beforeEnter: AuthGuard
     },
     {

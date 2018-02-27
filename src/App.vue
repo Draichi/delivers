@@ -62,7 +62,7 @@
       <router-view>
         <v-container fluid></v-container>
       </router-view>
-      <!-- <v-card-text v-if="this.$route.path!=='/parceiro/novo'">
+      <v-card-text v-if="this.$route.path!=='/parceiro/novo'">
         <v-tooltip left>
           <v-btn
           fixed
@@ -78,7 +78,7 @@
           </v-btn>
           <span>Create Meetup</span>
         </v-tooltip>
-      </v-card-text> -->
+      </v-card-text>
     </v-content>
   </v-app>
 </template>

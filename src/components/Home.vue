@@ -27,7 +27,7 @@
                         <img :src="item.imageUrl" alt="">
                       </v-list-tile-avatar>
                       <v-list-tile-content>
-                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        <v-list-tile-title>{{ item.estabelecimento }}</v-list-tile-title>
                         <v-list-tile-sub-title>
                           <v-icon>
                             star
@@ -39,7 +39,7 @@
                         </v-list-tile-sub-title>
                       </v-list-tile-content>
                       <v-list-tile-action>
-                        <v-list-tile-action-text>{{ item.title }}</v-list-tile-action-text>
+                        <v-list-tile-action-text>{{ item.endereco }}</v-list-tile-action-text>
                       </v-list-tile-action>
                     </v-list-tile>
                     <v-divider v-if="index + 1 < meetups.length" :key="index"></v-divider>

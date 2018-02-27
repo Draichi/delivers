@@ -15,14 +15,14 @@ export default {
       const meetup = state.loadedMeetups.find(meetup => {
         return meetup.id === payload.id
       })
-      if (payload.title) {
-        meetup.title = payload.title
+      if (payload.estabelecimento) {
+        meetup.estabelecimento = payload.estabelecimento
       }
-      if (payload.description) {
-        meetup.description = payload.description
+      if (payload.endereco) {
+        meetup.endereco = payload.endereco
       }
-      if (payload.location) {
-        meetup.location = payload.location
+      if (payload.pratos) {
+        meetup.pratos = payload.pratos
       }
     }
   },
@@ -76,11 +76,9 @@ export default {
     },
     createMeetup ({commit, getters}, payload) {
       const meetup = {
-        title: payload.title,
-        location: payload.location,
-        imageUrl: payload.imageUrl,
-        description: payload.description,
-        creatorId: getters.user.id
+        estabelecimento: payload.estabelecimento,
+        endereco: payload.endereco,
+        pratos: payload.pratos
       }
       firebase.database().ref('meetups').push(meetup)
         .then(data => {
