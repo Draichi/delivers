@@ -37,10 +37,10 @@ export default {
           for (let key in obj) {
             meetups.push({
               id: key,
-              title: obj[key].title,
-              description: obj[key].description,
+              endereco: obj[key].endereco,
+              estabelecimento: obj[key].estabelecimento,
               imageUrl: obj[key].imageUrl,
-              location: obj[key].location,
+              pratos: obj[key].pratos,
               creatorId: obj[key].creatorId
             })
           }

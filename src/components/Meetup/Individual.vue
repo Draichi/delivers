@@ -15,25 +15,17 @@
         <v-card>
           <v-list three-line>
             <template>
-              <v-list-tile>
-                <v-list-tile-avatar>
-                  <img :src="item.imageUrl" alt="">
-                </v-list-tile-avatar>
+              <v-list-tile v-for="prato in item.pratos" :key="prato.key">
                 <v-list-tile-content>
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                  <v-list-tile-title>
+                    {{ prato.nome }}
+                  </v-list-tile-title>
                   <v-list-tile-sub-title>
-                    {{ item.description }}
-                    <v-icon>
-                      star
-                      star
-                      star
-                      star
-                      star_half
-                    </v-icon>
+                    {{ prato.descricao }}
                   </v-list-tile-sub-title>
                 </v-list-tile-content>
                 <v-list-tile-action>
-                  <v-list-tile-action-text>{{ item.location }}</v-list-tile-action-text>
+                  <v-list-tile-action-text>{{ prato.preco }}</v-list-tile-action-text>
                 </v-list-tile-action>
               </v-list-tile>
             </template>

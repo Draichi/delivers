@@ -15,7 +15,7 @@ export default new Router({
   routes: [
     {
       path: '/home',
-      name: 'Home',
+      name: 'Restaurantes',
       component: Home
     },
     {

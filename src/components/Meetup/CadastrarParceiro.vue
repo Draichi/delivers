@@ -94,7 +94,7 @@ export default {
       this.$router.push('/home')
     },
     addFields () {
-      this.pratos.push({key: '', value: ''})
+      this.pratos.push({nome: '', descricao: '', preco: ''})
     }
   }
 }
