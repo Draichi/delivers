@@ -27,6 +27,7 @@
                         <v-list-tile-title>Endereço: {{ item.endereco }} - {{ item.numero }}</v-list-tile-title>
                         <v-list-tile-sub-title>Celular: {{ item.celular }}</v-list-tile-sub-title>
                         <v-list-tile-sub-title>Nome: {{ item.nome }}</v-list-tile-sub-title>
+                        <v-list-tile-sub-title v-for="prato in item.prato" :key="prato.nome">{{ prato.nome }}</v-list-tile-sub-title>
                       </v-list-tile-content>
                       <v-list-tile-action>
                         <v-list-tile-action-text v-if="item.pagamento === 0">

@@ -72,7 +72,8 @@ export default {
               endereco: obj[key].endereco,
               nome: obj[key].nome,
               numero: obj[key].numero,
-              pagamento: obj[key].pagamento
+              pagamento: obj[key].pagamento,
+              prato: obj[key].prato
             })
           }
           commit('setLoadedPedidos', pedidos)
@@ -126,7 +127,8 @@ export default {
         celular: payload.celular,
         endereco: payload.endereco,
         numero: payload.numero,
-        pagamento: payload.pagamento
+        pagamento: payload.pagamento,
+        prato: payload.prato
       }
       firebase.database().ref('pedidos').push(pedido)
         .then(data => {
