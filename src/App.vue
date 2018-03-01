@@ -93,13 +93,13 @@
     computed: {
       menuItems () {
         let menuItems = [
-          { icon: 'face', title: 'Sign up', link: '/signup' },
+          // { icon: 'face', title: 'Sign up', link: '/signup' },
           { icon: 'lock_open', title: 'Sign in', link: '/signin' }
         ]
         if (this.userAuthenticaded) {
           menuItems = [
-            { icon: 'favorite', title: 'Pedidos', link: '/registered' },
-            { icon: 'help', title: 'About', link: '/profile' }
+            { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
+            { icon: 'help', title: 'About', link: '/' }
           ]
         }
         return menuItems
