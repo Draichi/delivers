@@ -3,17 +3,20 @@ import * as firebase from 'firebase'
 export default {
   state: {
     loadedMeetups: [],
-    pedidos: []
+    loadedPedidos: []
   },
   mutations: {
     setLoadedMeetups (state, payload) {
       state.loadedMeetups = payload
     },
+    setLoadedPedidos (state, payload) {
+      state.loadedPedidos = payload
+    },
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
     },
     createPedido (state, payload) {
-      state.pedidos.push(payload)
+      state.loadedPedidos.push(payload)
     },
     updateMeetup (state, payload) {
       const meetup = state.loadedMeetups.find(meetup => {
@@ -49,6 +52,30 @@ export default {
             })
           }
           commit('setLoadedMeetups', meetups)
+          commit('setLoading', false)
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
+        })
+    },
+    loadPedidos ({commit}) {
+      commit('setLoading', true)
+      firebase.database().ref('pedidos').once('value')
+        .then(data => {
+          const pedidos = []
+          const obj = data.val()
+          for (let key in obj) {
+            pedidos.push({
+              id: key,
+              celular: obj[key].celular,
+              endereco: obj[key].endereco,
+              nome: obj[key].nome,
+              numero: obj[key].numero,
+              pagamento: obj[key].pagamento
+            })
+          }
+          commit('setLoadedPedidos', pedidos)
           commit('setLoading', false)
         })
         .catch(error => {
@@ -122,15 +149,17 @@ export default {
         return meetupA.date > meetupB.date
       })
     },
+    loadedPedidos (state) {
+      return state.loadedPedidos.sort((meetupA, meetupB) => {
+        return meetupA.date > meetupB.date
+      })
+    },
     loadedMeetup (state) {
       return (meetupId) => {
         return state.loadedMeetups.find((meetup) => {
           return meetup.id === meetupId
         })
       }
-    },
-    featuredMeetups (state, getters) {
-      return getters.loadedMeetups.slice(0, 3)
     }
   }
 }
