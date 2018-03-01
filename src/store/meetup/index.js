@@ -2,7 +2,8 @@ import * as firebase from 'firebase'
 
 export default {
   state: {
-    loadedMeetups: []
+    loadedMeetups: [],
+    pedidos: []
   },
   mutations: {
     setLoadedMeetups (state, payload) {
@@ -10,6 +11,9 @@ export default {
     },
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
+    },
+    createPedido (state, payload) {
+      state.pedidos.push(payload)
     },
     updateMeetup (state, payload) {
       const meetup = state.loadedMeetups.find(meetup => {
@@ -85,6 +89,23 @@ export default {
           console.log(data)
           const key = data.key
           commit('createMeetup', {...meetup, id: key})
+        })
+        .catch(error => console.log(error))
+      // Reach out to firebase
+    },
+    createPedido ({commit, getters}, payload) {
+      const pedido = {
+        nome: payload.nome,
+        celular: payload.celular,
+        endereco: payload.endereco,
+        numero: payload.numero,
+        pagamento: payload.pagamento
+      }
+      firebase.database().ref('pedidos').push(pedido)
+        .then(data => {
+          console.log(data)
+          const key = data.key
+          commit('createPedido', {...pedido, id: key})
         })
         .catch(error => console.log(error))
       // Reach out to firebase

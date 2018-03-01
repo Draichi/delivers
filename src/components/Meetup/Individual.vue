@@ -12,6 +12,7 @@
     </v-layout>
     <v-layout row wrap v-else>
       <v-flex xs12>
+        {{ toggle_pagamento }}
         <v-card>
           <v-list three-line>
             <template>
@@ -57,7 +58,11 @@
             <div class="subheading">Preencha seus dados</div>
           </v-card-title>
           <v-card-actions>
-            <v-form v-model="valid" class="px-2">
+            <v-form 
+              v-model="valid"
+              class="px-2"
+              @submit.prevent="onCreatePedido"
+            >
               <v-text-field
                 label="Seu nome"
                 v-model="nome"
@@ -68,13 +73,6 @@
                 v-model="celular"
                 required
               ></v-text-field>
-            </v-form>
-          </v-card-actions>
-          <v-card-title>
-            <div class="subheading">Endereço</div>
-          </v-card-title>
-          <v-card-actions>
-            <v-form class="px-2">
               <v-text-field
                 label="Rua"
                 v-model="endereco"
@@ -85,12 +83,17 @@
                 v-model="numero"
                 required
               ></v-text-field>
+              <v-btn
+                block
+                color="teal"
+                dark
+                type="submit"
+              >REALIZAR PEDIDO</v-btn>
             </v-form>
           </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
-    <v-btn block color="teal" dark>REALIZAR PEDIDO</v-btn>
   </v-container>
 </template>
 
@@ -108,6 +111,10 @@ export default {
     }
   },
   computed: {
+    formIsValid () {
+      return this.endereco !== '' &&
+        this.numero !== ''
+    },
     item () {
       return this.$store.getters.loadedMeetup(this.id)
     },
@@ -123,6 +130,23 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
+    }
+  },
+  methods: {
+    onCreatePedido () {
+      if (!this.formIsValid) {
+        return
+      }
+      const pedidoData = {
+        nome: this.nome,
+        celular: this.celular,
+        endereco: this.endereco,
+        numero: this.numero,
+        // 0 credito / 1 debito / 2 dinheiro
+        pagamento: this.toggle_pagamento
+      }
+      this.$store.dispatch('createPedido', pedidoData)
+      this.$router.push('/home')
     }
   }
 }
