@@ -2,25 +2,25 @@ import * as firebase from 'firebase'
 
 export default {
   state: {
-    loadedMeetups: [],
-    loadedPedidos: []
+    restaurantes: [],
+    pedidos: []
   },
   mutations: {
-    setLoadedMeetups (state, payload) {
-      state.loadedMeetups = payload
+    setRestaurantes (state, payload) {
+      state.restaurantes = payload
     },
-    setLoadedPedidos (state, payload) {
-      state.loadedPedidos = payload
+    setPedidos (state, payload) {
+      state.pedidos = payload
     },
-    createMeetup (state, payload) {
-      state.loadedMeetups.push(payload)
+    createRestaurantes (state, payload) {
+      state.restaurantes.push(payload)
     },
     createPedido (state, payload) {
-      state.loadedPedidos.push(payload)
+      state.pedidos.push(payload)
     },
-    updateMeetup (state, payload) {
-      const meetup = state.loadedMeetups.find(meetup => {
-        return meetup.id === payload.id
+    updateRestaurantes (state, payload) {
+      const restaurante = state.restaurantes.find(restaurante => {
+        return restaurante.id === payload.id
       })
       if (payload.estabelecimento) {
         meetup.estabelecimento = payload.estabelecimento
@@ -35,14 +35,14 @@ export default {
   },
   // is in the 'actions' where we made ascyncronus tasks
   actions: {
-    loadMeetups ({commit}) {
+    loadRestaurantes ({commit}) {
       commit('setLoading', true)
-      firebase.database().ref('meetups').once('value')
+      firebase.database().ref('restaurantes').once('value')
         .then(data => {
-          const meetups = []
+          const restaurantes = []
           const obj = data.val()
           for (let key in obj) {
-            meetups.push({
+            restaurantes.push({
               id: key,
               endereco: obj[key].endereco,
               estabelecimento: obj[key].estabelecimento,
@@ -51,7 +51,7 @@ export default {
               creatorId: obj[key].creatorId
             })
           }
-          commit('setLoadedMeetups', meetups)
+          commit('setRestaurantes', restaurantes)
           commit('setLoading', false)
         })
         .catch(error => {
@@ -76,7 +76,7 @@ export default {
               prato: obj[key].prato
             })
           }
-          commit('setLoadedPedidos', pedidos)
+          commit('setPedidos', pedidos)
           commit('setLoading', false)
         })
         .catch(error => {
@@ -84,39 +84,42 @@ export default {
           commit('setLoading', false)
         })
     },
-    updateMeetupData ({commit}, payload) {
+    updateRestauranteData ({commit}, payload) {
       commit('setLoading', true)
       const updateObj = {}
-      if (payload.title) {
-        updateObj.title = payload.title
+      if (payload.endereco) {
+        updateObj.endereco = payload.endereco
       }
-      if (payload.location) {
-        updateObj.location = payload.location
+      if (payload.estabelecimento) {
+        updateObj.estabelecimento = payload.estabelecimento
       }
-      if (payload.description) {
-        updateObj.description = payload.description
+      if (payload.imageUrl) {
+        updateObj.imageUrl = payload.imageUrl
       }
-      firebase.database().ref('meetups').child(payload.id).update(updateObj)
+      if (payload.pratos) {
+        updateObj.pratos = payload.pratos
+      }
+      firebase.database().ref('restaurantes').child(payload.id).update(updateObj)
         .then(() => {
           commit('setLoading', false)
-          commit('updateMeetup', payload)
+          commit('updateRestaurantes', payload)
         })
         .catch(error => {
           console.log(error)
           commit('setLoading', false)
         })
     },
-    createMeetup ({commit, getters}, payload) {
-      const meetup = {
+    createRestaurantes ({commit, getters}, payload) {
+      const restaurante = {
         estabelecimento: payload.estabelecimento,
         endereco: payload.endereco,
         pratos: payload.pratos
       }
-      firebase.database().ref('meetups').push(meetup)
+      firebase.database().ref('restaurantes').push(restaurante)
         .then(data => {
           console.log(data)
           const key = data.key
-          commit('createMeetup', {...meetup, id: key})
+          commit('createRestaurantes', {...restaurante, id: key})
         })
         .catch(error => console.log(error))
       // Reach out to firebase
@@ -138,28 +141,28 @@ export default {
         })
         .catch(error => console.log(error))
       // Reach out to firebase
-    },
-    registeredMeetups ({commit, getters}, payload) {
-      return getters.loadedMeetups.find(meetup => {
-        return meetup === payload.id
-      })
     }
+    // registeredMeetups ({commit, getters}, payload) {
+    //   return getters.loadedMeetups.find(meetup => {
+    //     return meetup === payload.id
+    //   })
+    // }
   },
   getters: {
-    loadedMeetups (state) {
-      return state.loadedMeetups.sort((meetupA, meetupB) => {
-        return meetupA.date > meetupB.date
+    restaurantes (state) {
+      return state.restaurantes.sort((restauranteA, restauranteB) => {
+        return restauranteA.date > restauranteB.date
       })
     },
-    loadedPedidos (state) {
-      return state.loadedPedidos.sort((meetupA, meetupB) => {
-        return meetupA.date > meetupB.date
+    pedidos (state) {
+      return state.pedidos.sort((pedidoA, pedidoB) => {
+        return pedidoA.date > pedidoB.date
       })
     },
-    loadedMeetup (state) {
-      return (meetupId) => {
-        return state.loadedMeetups.find((meetup) => {
-          return meetup.id === meetupId
+    pedido (state) {
+      return (pedidoID) => {
+        return state.pedidos.find((pedido) => {
+          return pedido.id === pedidoID
         })
       }
     }

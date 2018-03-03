@@ -85,12 +85,12 @@ export default {
       if (!this.formIsValid) {
         return
       }
-      const meetupData = {
+      const restauranteData = {
         estabelecimento: this.estabelecimento,
         endereco: this.endereco,
         pratos: this.pratos
       }
-      this.$store.dispatch('createMeetup', meetupData)
+      this.$store.dispatch('createRestaurante', restauranteData)
       this.$router.push('/home')
     },
     addFields () {

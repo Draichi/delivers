@@ -69,7 +69,7 @@ export default {
   }),
   computed: {
     loadedPedidos () {
-      return this.$store.getters.loadedPedidos
+      return this.$store.getters.pedidos
     },
     loading () {
       return this.$store.getters.loading
