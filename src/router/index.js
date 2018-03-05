@@ -31,8 +31,7 @@ export default new Router({
     {
       path: '/registered',
       name: 'Registered',
-      component: Registered,
-      beforeEnter: AuthGuard
+      component: Registered
     },
     {
       path: '/meetups/:id',

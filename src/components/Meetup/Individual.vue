@@ -121,7 +121,7 @@ export default {
         this.numero !== ''
     },
     item () {
-      return this.$store.getters.restaurantes(this.id)
+      return this.$store.getters.restaurante(this.id)
     },
     userIsAuthenticated () {
       return this.$store.getters.user !== null && this.$store.getters.user !== undefined

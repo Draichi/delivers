@@ -6,30 +6,30 @@ export default {
     pedidos: []
   },
   mutations: {
-    setRestaurantes (state, payload) {
+    setRestaurante (state, payload) {
       state.restaurantes = payload
     },
-    setPedidos (state, payload) {
+    setPedido (state, payload) {
       state.pedidos = payload
     },
-    createRestaurantes (state, payload) {
+    createRestaurante (state, payload) {
       state.restaurantes.push(payload)
     },
     createPedido (state, payload) {
       state.pedidos.push(payload)
     },
-    updateRestaurantes (state, payload) {
+    updateRestaurante (state, payload) {
       const restaurante = state.restaurantes.find(restaurante => {
         return restaurante.id === payload.id
       })
       if (payload.estabelecimento) {
-        meetup.estabelecimento = payload.estabelecimento
+        restaurante.estabelecimento = payload.estabelecimento
       }
       if (payload.endereco) {
-        meetup.endereco = payload.endereco
+        restaurante.endereco = payload.endereco
       }
       if (payload.pratos) {
-        meetup.pratos = payload.pratos
+        restaurante.pratos = payload.pratos
       }
     }
   },
@@ -51,7 +51,7 @@ export default {
               creatorId: obj[key].creatorId
             })
           }
-          commit('setRestaurantes', restaurantes)
+          commit('setRestaurante', restaurantes)
           commit('setLoading', false)
         })
         .catch(error => {
@@ -76,7 +76,7 @@ export default {
               prato: obj[key].prato
             })
           }
-          commit('setPedidos', pedidos)
+          commit('setPedido', pedidos)
           commit('setLoading', false)
         })
         .catch(error => {
@@ -102,14 +102,14 @@ export default {
       firebase.database().ref('restaurantes').child(payload.id).update(updateObj)
         .then(() => {
           commit('setLoading', false)
-          commit('updateRestaurantes', payload)
+          commit('updateRestaurante', payload)
         })
         .catch(error => {
           console.log(error)
           commit('setLoading', false)
         })
     },
-    createRestaurantes ({commit, getters}, payload) {
+    createRestaurante ({commit, getters}, payload) {
       const restaurante = {
         estabelecimento: payload.estabelecimento,
         endereco: payload.endereco,
@@ -119,7 +119,7 @@ export default {
         .then(data => {
           console.log(data)
           const key = data.key
-          commit('createRestaurantes', {...restaurante, id: key})
+          commit('createRestaurante', {...restaurante, id: key})
         })
         .catch(error => console.log(error))
       // Reach out to firebase
@@ -153,6 +153,13 @@ export default {
       return state.restaurantes.sort((restauranteA, restauranteB) => {
         return restauranteA.date > restauranteB.date
       })
+    },
+    restaurante (state) {
+      return (restauranteID) => {
+        return state.restaurantes.find(restaurante => {
+          return restaurante.id === restauranteID
+        })
+      }
     },
     pedidos (state) {
       return state.pedidos.sort((pedidoA, pedidoB) => {

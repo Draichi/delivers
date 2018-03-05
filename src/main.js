@@ -40,7 +40,7 @@ new Vue({
         this.$store.dispatch('fetchUserData')
       }
     })
-    this.$store.dispatch('loadMeetups')
+    this.$store.dispatch('loadRestaurantes')
     this.$store.dispatch('loadPedidos')
   }
 })
