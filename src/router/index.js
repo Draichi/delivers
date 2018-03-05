@@ -34,7 +34,7 @@ export default new Router({
       component: Registered
     },
     {
-      path: '/meetups/:id',
+      path: '/restaurantes/:id',
       props: true,
       name: 'Finalize seu pedido',
       component: Individual
