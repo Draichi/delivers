@@ -32,6 +32,25 @@
               </v-text-field>
             </v-flex>
           </v-layout>
+          <div>
+            <video
+              ref="video"
+              id="video"
+              width="150"
+              height="100"
+              autoplay
+            ></video>
+            <button
+              id="snap"
+              @click="capture()">snap
+            </button>
+            <canvas
+              ref="canvas"
+              id="canvas"
+              width="150"
+              height="100">
+            </canvas>
+          </div>
           <v-layout row wrap>
             <v-flex xs12 sm6 offset-sm3>
               <div class="title">Adicionar prato</div>
@@ -71,8 +90,20 @@ export default {
     return {
       estabelecimento: '',
       endereco: '',
-      pratos: []
+      pratos: [],
+      video: {},
+      canvas: {},
+      captures: [],
+      mediaSream: null
     }
+  },
+  mounted () {
+    navigator.mediaDevices.getUserMedia({video: true})
+      .then(mediaSream => {
+        this.$refs.video.srcObject = mediaSream
+        this.$refs.video.play()
+      })
+      .catch(err => console.error('getusermedia() error:', err))
   },
   computed: {
     formIsValid () {
@@ -95,7 +126,18 @@ export default {
     },
     addFields () {
       this.pratos.push({nome: '', descricao: '', preco: ''})
+    },
+    capture () {
+      const mediaSreamTrack = this.$refs.video.srcObject.getVideoTracks()[0]
+      const imageCapture = new window.ImageCapture(mediaSreamTrack)
+      return imageCapture.takePhoto().then(blob => {
+        console.log(blob)
+      })
     }
+  },
+  destroyed () {
+    const tracks = this.$refs.video.srcObject.getTracks()
+    tracks.map(track => track.stop())
   }
 }
 </script>
