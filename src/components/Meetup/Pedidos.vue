@@ -29,9 +29,9 @@
                     >
                       {{ prato.nome }} - {{ prato.preco }}
                     </div>
-                    <div v-if="item.pagamento === 0" >Cartão de crédito</div>
-                    <div v-if="item.pagamento === 1" >Cartão de débito</div>
-                    <div v-if="item.pagamento === 2" >Dinheiro</div>
+                    <div v-if="item.pagamento === 0" >Cartão de crédito <v-icon>credit_card</v-icon></div>
+                    <div v-if="item.pagamento === 1" >Cartão de débito <v-icon>credit_card</v-icon></div>
+                    <div v-if="item.pagamento === 2" >Dinheiro <v-icon>account_balance_wallet</v-icon></div>
                   </div>
                 </v-card-title>
                 <v-card-text>
