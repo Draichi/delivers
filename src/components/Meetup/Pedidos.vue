@@ -19,39 +19,29 @@
               sm6
               offset-sm3
             >
-              <v-card>
-                <v-list three-line>
-                  <template v-for="(item, index) in loadedPedidos">
-                    <v-list-tile v-bind:key="item.id" @click="toggle(index)">
-                      <v-list-tile-content>
-                        <v-list-tile-title>Endereço: {{ item.endereco }} - {{ item.numero }}</v-list-tile-title>
-                        <v-list-tile-sub-title>Celular: {{ item.celular }}</v-list-tile-sub-title>
-                        <v-list-tile-sub-title>Nome: {{ item.nome }}</v-list-tile-sub-title>
-                        <v-list-tile-sub-title v-for="prato in item.prato" :key="prato.nome">{{ prato.nome }}</v-list-tile-sub-title>
-                      </v-list-tile-content>
-                      <v-list-tile-action>
-                        <v-list-tile-action-text v-if="item.pagamento === 0">
-                          Cartão de crédito
-                        </v-list-tile-action-text>
-                        <v-list-tile-action-text v-if="item.pagamento === 1">
-                          Cartão de débito
-                        </v-list-tile-action-text>
-                        <v-list-tile-action-text v-if="item.pagamento === 2">
-                          Dinheiro
-                        </v-list-tile-action-text>
-                        <v-icon
-                          color="grey lighten-1"
-                          v-if="selected.indexOf(index) < 0"
-                        >star_border</v-icon>
-                        <v-icon
-                          color="yellow darken-2"
-                          v-else
-                        >star</v-icon>
-                      </v-list-tile-action>
-                    </v-list-tile>
-                    <v-divider v-if="index + 1 < loadedPedidos.length" :key="index"></v-divider>
-                  </template>
-                </v-list>
+              <v-card v-for="(item, index) in loadedPedidos" :key="item.id">
+                <v-card-title primary-title>
+                  <div>
+                    <div class="headline">{{ item.endereco }} - {{ item.numero }}</div>
+                    <div
+                      v-for="prato in item.prato"
+                      :key="prato.nome"
+                    >
+                      {{ prato.nome }} - {{ prato.preco }}
+                    </div>
+                    <div v-if="item.pagamento === 0" >Cartão de crédito</div>
+                    <div v-if="item.pagamento === 1" >Cartão de débito</div>
+                    <div v-if="item.pagamento === 2" >Dinheiro</div>
+                  </div>
+                </v-card-title>
+                <v-card-text>
+                  {{ item.nome }} - {{ item.celular }}
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn flat color="purple">excluir</v-btn>
+                </v-card-actions>
+                <v-divider v-if="index + 1 < loadedPedidos.length" :key="index"></v-divider>
               </v-card>
             </v-flex>
           </v-layout>
@@ -64,8 +54,7 @@
 <script>
 export default {
   data: () => ({
-    flex: [12, 6, 6] * 5,
-    selected: [0]
+    show: false
   }),
   computed: {
     loadedPedidos () {
@@ -73,16 +62,6 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    }
-  },
-  methods: {
-    toggle (index) {
-      const i = this.selected.indexOf(index)
-      if (i > -1) {
-        this.selected.splice(i, 1)
-      } else {
-        this.selected.push(index)
-      }
     }
   }
 }
