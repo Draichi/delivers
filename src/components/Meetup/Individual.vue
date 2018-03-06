@@ -15,13 +15,19 @@
         <v-card>
           <v-list three-line>
             <template v-for="(prato, index) in item.pratos">
-              <v-list-tile v-bind:key="prato.id" @click="toggle(prato)">
+              <v-list-tile v-bind:key="prato.id">
                 <v-list-tile-content>
                   <v-list-tile-title>{{ prato.nome }}</v-list-tile-title>
                   <v-list-tile-sub-title>{{ prato.descricao }}</v-list-tile-sub-title>
-                  <v-list-tile-sub-title>R${{ prato.preco }}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>R$ {{ prato.preco }}</v-list-tile-sub-title>
                 </v-list-tile-content>
-                <v-list-tile-action>
+                <v-flex xs1>
+                  <v-text-field
+                    type="number"
+                    value="1"
+                  ></v-text-field>
+                </v-flex>
+                <v-list-tile-action @click="toggle(prato)">
                   <v-icon
                     color="grey lighten-1"
                     v-if="!selected.includes(prato)"
@@ -52,7 +58,9 @@ export default {
       nome: '',
       celular: '',
       endereco: '',
-      numero: ''
+      numero: '',
+      quantidade: null,
+      quantidades: [1, 2, 3, 4, 5, 6, 7]
     }
   },
   computed: {
