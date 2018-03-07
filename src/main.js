@@ -31,7 +31,7 @@ new Vue({
       authDomain: 'officemall-ea976.firebaseapp.com',
       databaseURL: 'https://officemall-ea976.firebaseio.com',
       projectId: 'officemall-ea976',
-      storageBucket: 'officemall-ea976.appspot.com',
+      storageBucket: 'gs://officemall-ea976.appspot.com',
       messagingSenderId: '617902006301'
     })
     firebase.auth().onAuthStateChanged(user => {

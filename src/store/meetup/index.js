@@ -3,7 +3,8 @@ import * as firebase from 'firebase'
 export default {
   state: {
     restaurantes: [],
-    pedidos: []
+    pedidos: [],
+    foto: {}
   },
   mutations: {
     setRestaurante (state, payload) {
@@ -113,13 +114,31 @@ export default {
       const restaurante = {
         estabelecimento: payload.estabelecimento,
         endereco: payload.endereco,
-        pratos: payload.pratos
+        pratos: payload.pratos,
+        image: payload.image
       }
+      let imageUrl
+      let key
       firebase.database().ref('restaurantes').push(restaurante)
         .then(data => {
           console.log(data)
-          const key = data.key
-          commit('createRestaurante', {...restaurante, id: key})
+          key = data.key
+          return key
+        })
+        .then(key => {
+          return firebase.storage().ref('images/').child(key).put(payload.image)
+        })
+        .then(fileData => {
+          imageUrl = fileData.metadata.downloadURLs[0]
+          return firebase.database().ref('restaurantes').child(key).update({imageUrl: imageUrl})
+        })
+        // commit to local store
+        .then(() => {
+          commit('createRestaurante', {
+            ...restaurante,
+            imageUrl: imageUrl,
+            id: key
+          })
         })
         .catch(error => console.log(error))
       // Reach out to firebase

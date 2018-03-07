@@ -74,7 +74,8 @@ export default {
     return {
       estabelecimento: '',
       endereco: '',
-      pratos: []
+      pratos: [],
+      image: null
     }
   },
   computed: {
@@ -91,7 +92,8 @@ export default {
       const restauranteData = {
         estabelecimento: this.estabelecimento,
         endereco: this.endereco,
-        pratos: this.pratos
+        pratos: this.pratos,
+        image: this.$store.foto
       }
       this.$store.dispatch('createRestaurante', restauranteData)
       this.$router.push('/home')

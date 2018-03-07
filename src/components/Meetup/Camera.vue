@@ -27,14 +27,10 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
-
 export default {
   data () {
     return {
       video: {},
-      canvas: {},
-      captures: [],
       mediaSream: null
     }
   },
@@ -56,9 +52,8 @@ export default {
       const mediaSreamTrack = this.mediaSream.getVideoTracks()[0]
       const imageCapture = new window.ImageCapture(mediaSreamTrack)
       return imageCapture.takePhoto().then(blob => {
-        firebase.storage().ref().child(`images/picture-${new Date().getTime()}`).put(blob).then(res => {
-          console.log(res)
-        })
+        this.$store.foto = blob
+        console.log(this.$store.foto)
         this.$router.go(-1)
       })
     }
