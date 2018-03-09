@@ -58,5 +58,47 @@
         </v-form>
       </v-card-actions>
     </v-card>
+    {{ this.$store.pedidoParaPagamento }}
   </v-flex>
 </template>
+
+<script>
+export default {
+  props: ['id'],
+  data () {
+    return {
+      toggle_pagamento: null,
+      valid: false,
+      nome: '',
+      celular: '',
+      endereco: '',
+      numero: ''
+    }
+  },
+  computed: {
+    formIsValid () {
+      return this.endereco !== '' &&
+        this.numero !== ''
+    }
+  },
+  methods: {
+    onCreatePedido () {
+      if (!this.formIsValid) {
+        return
+      }
+      const pedidoData = {
+        nome: this.nome,
+        celular: this.celular,
+        endereco: this.endereco,
+        numero: this.numero,
+        // 0 credito / 1 debito / 2 dinheiro
+        pagamento: this.toggle_pagamento,
+        prato: this.selected
+      }
+      this.$store.dispatch('createPedido', pedidoData)
+      this.$router.push('/home')
+    }
+  }
+}
+</script>
+

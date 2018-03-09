@@ -4,7 +4,7 @@ export default {
   state: {
     restaurantes: [],
     pedidos: [],
-    foto: {}
+    pedidoParaPagamento: {}
   },
   mutations: {
     setRestaurante (state, payload) {

@@ -24,7 +24,9 @@
                 <v-flex xs1>
                   <v-text-field
                     type="number"
-                    value="1"
+                    placeholder="1"
+                    name="quantidade"
+                    v-model="prato.quantidade"
                   ></v-text-field>
                 </v-flex>
                 <v-list-tile-action @click="toggle(prato)">
@@ -44,6 +46,21 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout row>
+      <v-flex
+        xs12
+        sm6
+        offset-sm3
+        class="mt-4"
+      >
+        <v-btn
+          block
+          class="green"
+          :disabled="!formIsValid"
+          @click="onCreatePedido()"
+          ><v-icon>done</v-icon></v-btn>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -52,34 +69,15 @@ export default {
   props: ['id'],
   data () {
     return {
-      toggle_pagamento: null,
-      selected: [],
-      valid: false,
-      nome: '',
-      celular: '',
-      endereco: '',
-      numero: '',
-      quantidade: null,
-      quantidades: [1, 2, 3, 4, 5, 6, 7]
+      selected: []
     }
   },
   computed: {
     formIsValid () {
-      return this.endereco !== '' &&
-        this.numero !== ''
+      return this.selected.length > 0
     },
     item () {
       return this.$store.getters.restaurante(this.id)
-    },
-    userIsAuthenticated () {
-      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-    },
-    userIsTheCreator () {
-      if (!this.userIsAuthenticated) {
-        return false
-      } else {
-        return this.$store.getters.user.id === this.meetup.creatorId
-      }
     },
     loading () {
       return this.$store.getters.loading
@@ -87,27 +85,18 @@ export default {
   },
   methods: {
     onCreatePedido () {
-      if (!this.formIsValid) {
+      this.$store.pedidoParaPagamento = this.selected
+      this.$router.push('/pagamento')
+    },
+    toggle (prato) {
+      if (prato.quantidade === '' || Object.values(prato.quantidade) === '') {
         return
       }
-      const pedidoData = {
-        nome: this.nome,
-        celular: this.celular,
-        endereco: this.endereco,
-        numero: this.numero,
-        // 0 credito / 1 debito / 2 dinheiro
-        pagamento: this.toggle_pagamento,
-        prato: this.selected
-      }
-      this.$store.dispatch('createPedido', pedidoData)
-      this.$router.push('/home')
-    },
-    toggle (index) {
-      const i = this.selected.indexOf(index)
+      const i = this.selected.indexOf(prato)
       if (i > -1) {
         this.selected.splice(i, 1)
       } else {
-        this.selected.push(index)
+        this.selected.push(prato)
       }
     }
   }

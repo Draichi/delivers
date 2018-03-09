@@ -7,26 +7,20 @@
       :mini-variant="true"
     >
       <v-list v-for="item in menuItems" :key="item.title">
-        <v-tooltip right>
-          <v-list-tile :to="item.link" slot="activator">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-          </v-list-tile>
-          <span>{{ item.title }}</span>
-        </v-tooltip>
+        <v-list-tile :to="item.link">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+        </v-list-tile>
       </v-list>
       <v-list v-if="userAuthenticaded">
-        <v-tooltip right>
-          <v-list-tile @click="onLogOut" slot="activator">
-            <v-list-tile-action>
-              <v-icon>exit_to_app</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>Logout</v-list-tile-content>
-          </v-list-tile>
-          <span>Logout</span>
-        </v-tooltip>
+        <v-list-tile @click="onLogOut">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Logout</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app color="light-blue" dark>
@@ -62,23 +56,6 @@
       <router-view>
         <v-container fluid></v-container>
       </router-view>
-      <v-card-text v-if="this.$route.path!=='/parceiro/novo'">
-        <v-tooltip left>
-          <v-btn
-          fixed
-          fab
-          color="yellow darken-1"
-          bottom
-          right
-          style="margin-bottom: 10vh;"
-          to="/parceiro/novo"
-          slot="activator"
-          >
-            <v-icon>add</v-icon>
-          </v-btn>
-          <span>Create Meetup</span>
-        </v-tooltip>
-      </v-card-text>
     </v-content>
   </v-app>
 </template>
@@ -99,7 +76,8 @@
         if (this.userAuthenticaded) {
           menuItems = [
             { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
-            { icon: 'help', title: 'About', link: '/' }
+            { icon: 'dashboard', title: 'About', link: '/home' },
+            { icon: 'place', title: 'Cadastrar', link: '/parceiro/novo' }
           ]
         }
         return menuItems

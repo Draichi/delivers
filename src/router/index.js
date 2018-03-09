@@ -8,6 +8,7 @@ import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
 import Individual from '@/components/Meetup/Individual'
+import Pagamento from '@/components/Meetup/Pagamento'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
@@ -32,6 +33,11 @@ export default new Router({
       path: '/registered',
       name: 'Registered',
       component: Registered
+    },
+    {
+      path: '/pagamento',
+      name: 'Pagamento',
+      component: Pagamento
     },
     {
       path: '/restaurantes/:id',
