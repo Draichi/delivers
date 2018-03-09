@@ -8,7 +8,6 @@ import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
 import Individual from '@/components/Meetup/Individual'
-import Camera from '@/components/Meetup/Camera'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
@@ -24,11 +23,6 @@ export default new Router({
       path: '/pedidos',
       name: 'Pedidos',
       component: Pedidos
-    },
-    {
-      path: '/camera',
-      name: 'Camera',
-      component: Camera
     },
     {
       path: '*',
