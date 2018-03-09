@@ -5,7 +5,7 @@
         <v-form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <p class="display-1 text-xs-center">Lugar</p>
+              <p class="display-1 text-xs-center">Restaurante</p>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -30,6 +30,27 @@
                 v-model="endereco"
               >
               </v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-icon>access_time</v-icon>
+              <v-text-field
+                name="horario"
+                label="Ex: 11:00 - 16:00"
+                type="time"
+                suffix="00:00 ~ 23:59"
+                id="horario"
+                v-model="horario"
+              >
+              </v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout row class="mb-5">
+            <v-flex xs12 sm6 offset-sm3 class="text-xs-center">
+              <v-btn fab dark>
+                <v-icon>local_see</v-icon>
+              </v-btn>
             </v-flex>
           </v-layout>
           <!-- file hehere -->
@@ -114,6 +135,7 @@ export default {
     return {
       estabelecimento: '',
       endereco: '',
+      horario: '',
       pratos: [],
       image: null
     }

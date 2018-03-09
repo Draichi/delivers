@@ -89,7 +89,7 @@ export default {
       this.$router.push('/pagamento')
     },
     toggle (prato) {
-      if (prato.quantidade === '' || Object.values(prato.quantidade) === '') {
+      if (prato.quantidade === '' || Object.values(prato.quantidade) === '' || prato.quantidade === '0') {
         return
       }
       const i = this.selected.indexOf(prato)
