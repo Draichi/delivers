@@ -44,6 +44,9 @@
                 <v-divider v-if="index + 1 < loadedPedidos.length" :key="index"></v-divider>
               </v-card>
             </v-flex>
+            <google-map
+              name="example"
+            ></google-map>
           </v-layout>
         </v-container>
       </v-flex>
@@ -52,7 +55,11 @@
 </template>
 
 <script>
+import GoogleMap from '@/components/Meetup/GoogleMap'
 export default {
+  components: {
+    'google-map': GoogleMap
+  },
   data: () => ({
     show: false
   }),
