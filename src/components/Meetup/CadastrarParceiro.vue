@@ -182,7 +182,7 @@ export default {
         this.endereco !== '' &&
         this.horarioAbertura !== '' &&
         this.horarioFechamento !== '' &&
-        this.pratos !== [] &&
+        this.pratos[0] !== undefined &&
         this.imageUrl !== ''
     }
   },
@@ -197,7 +197,7 @@ export default {
         horarioAbertura: this.horarioAbertura,
         horarioFechamento: this.horarioFechamento,
         pratos: this.pratos,
-        imageUrl: this.imageUrl
+        image: this.image
       }
       this.$store.dispatch('createRestaurante', restauranteData)
       this.$router.push('/home')
