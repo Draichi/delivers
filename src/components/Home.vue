@@ -22,7 +22,7 @@
                 <v-list-tile-content>
                   <v-list-tile-title>{{ item.estabelecimento }}</v-list-tile-title>
                   <v-list-tile-sub-title>
-                    <v-icon>
+                    <v-icon color="yellow darken-2">
                       star
                       star
                       star
