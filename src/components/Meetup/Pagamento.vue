@@ -14,10 +14,23 @@
             Débito
             <v-icon>credit_card</v-icon>
           </v-btn>
-          <v-btn small>
+          <v-btn small @click.stop="dialog = true">
             Dinheiro
             <v-icon>account_balance_wallet</v-icon>
           </v-btn>
+          <v-dialog v-model="dialog" max-width="500px">
+            <v-card>
+              <v-card-title>
+                Troco
+              </v-card-title>
+              <v-card-text>
+                Selecione aqui
+              </v-card-text>
+              <v-card-actions>
+                <v-btn flat @click.stop="dialog = false">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-btn-toggle>
       </v-card-actions>
       <v-card-title>
@@ -68,6 +81,7 @@ export default {
   data () {
     return {
       toggle_pagamento: null,
+      dialog: false,
       valid: false,
       nome: '',
       celular: '',

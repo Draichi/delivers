@@ -12,9 +12,11 @@
             <v-container>
               <v-layout>
                 <v-flex class="text-xs-center">
-                  <h2>Testing ?</h2>
                   <h4>Login: test@test.com</h4>
-                  <h4>Password: password</h4>
+                  <h4>senha: password</h4>
+                  <v-divider></v-divider>
+                  <h4>Login: do@no.com</h4>
+                  <h4>senha: entregas</h4>
                 </v-flex>
               </v-layout>
             </v-container>

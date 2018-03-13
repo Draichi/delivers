@@ -22,22 +22,6 @@
                       required
                     ></v-text-field>
                     <v-text-field
-                      name="endereco"
-                      label="Endereço"
-                      id="endereco"
-                      v-model="endereco"
-                      type="endereco"
-                      required
-                    ></v-text-field>
-                    <v-text-field
-                      name="numero"
-                      label="Número"
-                      id="numero"
-                      v-model="numero"
-                      type="numero"
-                      required
-                    ></v-text-field>
-                    <v-text-field
                       name="password"
                       label="Senha"
                       id="password"
@@ -53,16 +37,6 @@
                       type="password"
                       :rules="[comparePasswords]"
                     ></v-text-field>
-                    <v-radio-group v-model="radioGroup">
-                      <v-radio
-                        label="Cliente"
-                        value="cliente"
-                      ></v-radio>
-                      <v-radio
-                        label="Fornecedor"
-                        value="fornecedor"
-                      ></v-radio>
-                    </v-radio-group>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -92,11 +66,8 @@ export default {
   data () {
     return {
       email: '',
-      numero: '',
-      endereco: '',
       password: '',
-      confirmPassword: '',
-      radioGroup: 1
+      confirmPassword: ''
     }
   },
   computed: {
@@ -124,9 +95,7 @@ export default {
     onSignUp () {
       this.$store.dispatch('UserSignUp', {
         email: this.email,
-        password: this.password,
-        numero: this.numero,
-        endereco: this.endereco
+        password: this.password
       })
     },
     onDismissed () {

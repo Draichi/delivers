@@ -73,17 +73,25 @@
           // { icon: 'face', title: 'Sign up', link: '/signup' },
           { icon: 'lock_open', title: 'Sign in', link: '/signin' }
         ]
-        if (this.userAuthenticaded) {
+        if (this.userAuthenticaded && !this.isAdmin) {
           menuItems = [
-            { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
             { icon: 'dashboard', title: 'About', link: '/home' },
             { icon: 'place', title: 'Cadastrar', link: '/parceiro/novo' }
+          ]
+        }
+        if (this.userAuthenticaded && this.isAdmin) {
+          menuItems = [
+            { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
+            { icon: 'dashboard', title: 'About', link: '/home' }
           ]
         }
         return menuItems
       },
       userAuthenticaded () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      },
+      isAdmin () {
+        return this.$store.getters.user.id === 'Y6xZxCuGroeVVU6gNWItPB1R6xL2'
       }
     },
     methods: {

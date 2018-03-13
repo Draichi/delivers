@@ -17,7 +17,7 @@
             <template v-for="(item, index) in restaurantes">
               <v-list-tile v-bind:key="index" @click="onLoadRestaurante(item.id)">
                 <v-list-tile-avatar>
-                  <img :src="item.imageUrl" alt="">
+                  <img :src="item.imageUrl" alt="logo">
                 </v-list-tile-avatar>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ item.estabelecimento }}</v-list-tile-title>
