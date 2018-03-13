@@ -82,7 +82,8 @@
         if (this.userAuthenticaded && this.isAdmin) {
           menuItems = [
             { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
-            { icon: 'dashboard', title: 'About', link: '/home' }
+            { icon: 'dashboard', title: 'About', link: '/home' },
+            { icon: 'place', title: 'Cadastrar', link: '/parceiro/novo' }
           ]
         }
         return menuItems

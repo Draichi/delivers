@@ -35,8 +35,8 @@
 
 <style scoped>
   .google-map {
-    width: 800px;
-    height: 600px;
+    width: 100vw;
+    height: 300px;
     margin: 0 auto;
     background: gray;
   }

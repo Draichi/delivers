@@ -20,6 +20,12 @@
               offset-sm3
             >
               <v-card v-for="(item, index) in loadedPedidos" :key="item.id">
+                <v-card-media>
+                  <google-map
+                    name="example"
+                    :origem="item.endereco"
+                  ></google-map>
+                </v-card-media>
                 <v-card-title primary-title>
                   <div>
                     <div class="headline">{{ item.endereco }} - {{ item.numero }}</div>
@@ -42,10 +48,6 @@
                   <v-btn flat color="purple">excluir</v-btn>
                 </v-card-actions>
                 <v-divider v-if="index + 1 < loadedPedidos.length" :key="index"></v-divider>
-                <google-map
-                  name="example"
-                  :origem="item.endereco"
-                ></google-map>
               </v-card>
             </v-flex>
           </v-layout>
