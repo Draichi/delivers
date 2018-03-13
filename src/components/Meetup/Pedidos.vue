@@ -42,11 +42,12 @@
                   <v-btn flat color="purple">excluir</v-btn>
                 </v-card-actions>
                 <v-divider v-if="index + 1 < loadedPedidos.length" :key="index"></v-divider>
+                <google-map
+                  name="example"
+                  :origem="item.endereco"
+                ></google-map>
               </v-card>
             </v-flex>
-            <google-map
-              name="example"
-            ></google-map>
           </v-layout>
         </v-container>
       </v-flex>
