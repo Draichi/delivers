@@ -14,21 +14,38 @@
             Débito
             <v-icon>credit_card</v-icon>
           </v-btn>
-          <v-btn small @click.stop="dialog = true">
+          <v-btn small @click="onDinheiro">
             Dinheiro
             <v-icon>account_balance_wallet</v-icon>
           </v-btn>
           <v-dialog v-model="dialog" max-width="500px">
             <v-card>
-              <v-card-title>
-                Troco
-              </v-card-title>
-              <v-card-text>
-                Selecione aqui
-              </v-card-text>
-              <v-card-actions>
-                <v-btn flat @click.stop="dialog = false">Close</v-btn>
-              </v-card-actions>
+              <v-container>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <v-card-title class="title">Troco para</v-card-title>
+                  </v-flex>
+                </v-layout>
+                <v-divider></v-divider>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <v-select
+                      :items="troco"
+                      label="Selecione aqui"
+                      editable
+                      item-value="text"
+                      v-model="trocoQuantidade"
+                    ></v-select>
+                  </v-flex>
+                </v-layout>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <v-btn color="green" dark @click.stop="dialog = false">
+                      <v-icon>done</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-container>
             </v-card>
           </v-dialog>
         </v-btn-toggle>
@@ -71,6 +88,8 @@
         </v-form>
       </v-card-actions>
     </v-card>
+    {{ this.trocoQuantidade }}
+    {{ this.toggle_pagamento }}
     {{ this.$store.pedidoParaPagamento }}
   </v-flex>
 </template>
@@ -81,12 +100,19 @@ export default {
   data () {
     return {
       toggle_pagamento: null,
+      trocoQuantidade: null,
       dialog: false,
       valid: false,
       nome: '',
       celular: '',
       endereco: '',
-      numero: ''
+      numero: '',
+      troco: [
+        { text: 'R$ 100,00' },
+        { text: 'R$ 50,00' },
+        { text: 'R$ 20,00' },
+        { text: 'R$ 10,00' }
+      ]
     }
   },
   computed: {
@@ -111,6 +137,13 @@ export default {
       }
       this.$store.dispatch('createPedido', pedidoData)
       this.$router.push('/home')
+    },
+    onDinheiro () {
+      if (this.toggle_pagamento === 2) {
+        this.trocoQuantidade = null
+        return
+      }
+      this.dialog = true
     }
   }
 }
