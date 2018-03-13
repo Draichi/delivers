@@ -150,7 +150,7 @@ export default {
         endereco: payload.endereco,
         numero: payload.numero,
         pagamento: payload.pagamento,
-        prato: payload.prato
+        pedido: payload.pedido
       }
       firebase.database().ref('pedidos').push(pedido)
         .then(data => {

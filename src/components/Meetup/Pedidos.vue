@@ -22,7 +22,7 @@
               <v-card v-for="(item, index) in loadedPedidos" :key="item.id">
                 <v-card-media>
                   <google-map
-                    name="example"
+                    :name="item.celular"
                     :origem="item.endereco"
                   ></google-map>
                 </v-card-media>

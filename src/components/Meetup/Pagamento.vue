@@ -133,7 +133,7 @@ export default {
         numero: this.numero,
         // 0 credito / 1 debito / 2 dinheiro
         pagamento: this.toggle_pagamento,
-        prato: this.selected
+        pedido: this.$store.pedidoParaPagamento
       }
       this.$store.dispatch('createPedido', pedidoData)
       this.$router.push('/home')
