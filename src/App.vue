@@ -71,7 +71,8 @@
       menuItems () {
         let menuItems = [
           // { icon: 'face', title: 'Sign up', link: '/signup' },
-          { icon: 'lock_open', title: 'Sign in', link: '/signin' }
+          { icon: 'lock', title: 'Entrar', link: '/signin' },
+          { icon: 'store', title: 'Novo usuário', link: '/signup' }
         ]
         if (this.userAuthenticaded && !this.isAdmin) {
           menuItems = [

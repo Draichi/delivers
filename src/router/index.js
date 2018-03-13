@@ -58,12 +58,12 @@ export default new Router({
     },
     {
       path: '/signin',
-      name: 'Signin',
+      name: 'Entrar',
       component: Signin
     },
     {
       path: '/signup',
-      name: 'Signup',
+      name: 'Usuário',
       component: Signup
     }
   ],
