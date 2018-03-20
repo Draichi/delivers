@@ -84,6 +84,7 @@
           menuItems = [
             { icon: 'favorite', title: 'Pedidos', link: '/pedidos' },
             { icon: 'dashboard', title: 'About', link: '/home' },
+            { icon: 'store', title: 'Restaurantes', link: '/restaurantes' },
             { icon: 'place', title: 'Cadastrar', link: '/parceiro/novo' }
           ]
         }

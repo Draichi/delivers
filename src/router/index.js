@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import Restaurantes from '@/components/Restaurantes'
+import Home from '@/components/Index'
 import Registered from '@/components/Meetup/Registered'
 import Pedidos from '@/components/Meetup/Pedidos'
 import CadastrarParceiro from '@/components/Meetup/CadastrarParceiro'
@@ -16,9 +17,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/home',
+      path: '/restaurantes',
       name: 'Restaurantes',
-      component: Home
+      component: Restaurantes
     },
     {
       path: '/pedidos',
@@ -27,12 +28,17 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/home'
+      redirect: '/Home'
     },
     {
       path: '/registered',
       name: 'Registered',
       component: Registered
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/pagamento',

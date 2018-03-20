@@ -1,5 +1,5 @@
 {
-  "name": "pwa-instagram",
+  "name": "delivers",
   "version": "1.0.0",
   "description": "SPA PWA inspired by instagram",
   "author": "Draichi <lucasdraichi@gmail.com>",
@@ -23,7 +23,7 @@
     "firebase": "^4.7.0",
     "vue": "^2.3.3",
     "vue-router": "^2.3.1",
-    "vuetify": "^0.17.2",
+    "vuetify": "^0.17.7",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

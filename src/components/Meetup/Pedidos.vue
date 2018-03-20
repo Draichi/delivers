@@ -23,12 +23,13 @@
                 <v-card-media>
                   <google-map
                     :name="item.celular"
-                    :origem="item.endereco"
+                    :origem="item.origem"
+                    :destino="item.destino"
                   ></google-map>
                 </v-card-media>
                 <v-card-title primary-title>
                   <div>
-                    <div class="headline">{{ item.endereco }} - {{ item.numero }}</div>
+                    <div class="headline">{{ item.destino }}, {{ item.numero }} - {{ item.origem }}</div>
                     <div
                       v-for="prato in item.prato"
                       :key="prato.nome"

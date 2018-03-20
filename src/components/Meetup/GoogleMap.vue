@@ -19,7 +19,7 @@
       directionsDisplay.setMap(map)
       var request = {
         origin: this.origem,
-        destination: 'Jardim de Lorenzo, São Paulo - SP',
+        destination: '03733020',
         travelMode: 'DRIVING'
       }
       directionsService.route(request, function(result, status) {

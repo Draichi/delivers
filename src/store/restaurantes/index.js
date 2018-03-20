@@ -4,7 +4,8 @@ export default {
   state: {
     restaurantes: [],
     pedidos: [],
-    pedidoParaPagamento: {}
+    pedidoParaPagamento: {},
+    restauranteDoPedido: {}
   },
   mutations: {
     setRestaurante (state, payload) {
@@ -70,10 +71,11 @@ export default {
             pedidos.push({
               id: key,
               celular: obj[key].celular,
-              endereco: obj[key].endereco,
+              destino: obj[key].destino,
               nome: obj[key].nome,
               numero: obj[key].numero,
               pagamento: obj[key].pagamento,
+              origem: obj[key].origem,
               prato: obj[key].prato
             })
           }
@@ -147,7 +149,8 @@ export default {
       const pedido = {
         nome: payload.nome,
         celular: payload.celular,
-        endereco: payload.endereco,
+        destino: payload.destino,
+        origem: payload.origem,
         numero: payload.numero,
         pagamento: payload.pagamento,
         pedido: payload.pedido

@@ -20,19 +20,17 @@
                   <img :src="item.imageUrl" alt="logo">
                 </v-list-tile-avatar>
                 <v-list-tile-content>
-                  <v-list-tile-title>{{ item.estabelecimento }}</v-list-tile-title>
+                  <v-list-tile-title>{{ item.estabelecimento }} - {{ item.tipo }}</v-list-tile-title>
                   <v-list-tile-sub-title>
-                    <v-icon color="yellow darken-2">
-                      star
-                      star
-                      star
-                      star
-                      star_half
-                    </v-icon>
+                    {{ item.endereco }}
                   </v-list-tile-sub-title>
                 </v-list-tile-content>
                 <v-list-tile-action>
-                  <v-list-tile-action-text>{{ item.endereco }}</v-list-tile-action-text>
+                  <v-list-tile-action-text>
+                    <v-icon color="yellow darken-2">
+                      star
+                    </v-icon>4.5
+                  </v-list-tile-action-text>
                 </v-list-tile-action>
               </v-list-tile>
               <v-divider v-if="index + 1 < restaurantes.length" :key="index"></v-divider>

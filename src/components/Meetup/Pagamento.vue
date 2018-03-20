@@ -91,6 +91,7 @@
     {{ this.trocoQuantidade }}
     {{ this.toggle_pagamento }}
     {{ this.$store.pedidoParaPagamento }}
+    {{ this.$store.restauranteDoPedido }}
   </v-flex>
 </template>
 
@@ -129,7 +130,8 @@ export default {
       const pedidoData = {
         nome: this.nome,
         celular: this.celular,
-        endereco: this.endereco,
+        destino: this.endereco,
+        origem: this.$store.restauranteDoPedido,
         numero: this.numero,
         // 0 credito / 1 debito / 2 dinheiro
         pagamento: this.toggle_pagamento,

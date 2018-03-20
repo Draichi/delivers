@@ -61,6 +61,7 @@
           ><v-icon>done</v-icon></v-btn>
       </v-flex>
     </v-layout>
+    {{ this.selected[0] }}
   </v-container>
 </template>
 
@@ -86,6 +87,7 @@ export default {
   methods: {
     onCreatePedido () {
       this.$store.pedidoParaPagamento = this.selected
+      this.$store.restauranteDoPedido = this.item.endereco
       this.$router.push('/pagamento')
     },
     toggle (prato) {
