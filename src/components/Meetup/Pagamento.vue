@@ -97,7 +97,7 @@
           ></v-text-field>
           <v-btn
             block
-            color="teal"
+            color="secondary"
             dark
             type="submit"
           >REALIZAR PEDIDO</v-btn>
