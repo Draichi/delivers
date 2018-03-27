@@ -28,7 +28,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/Home'
+      redirect: '/restaurantes'
     },
     {
       path: '/registered',

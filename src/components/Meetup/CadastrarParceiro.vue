@@ -28,6 +28,7 @@
                 label="Ex: Rua Salomão, 455"
                 id="endereco"
                 v-model="endereco"
+                autocomplete="street-adress"
               >
               </v-text-field>
             </v-flex>
@@ -69,7 +70,7 @@
               >
               <v-btn
                 fab
-                dark
+                color="primary"
                 @click="onPickFile"
               >
                 <v-icon>local_see</v-icon>
@@ -134,7 +135,7 @@
                   fab
                   dark
                   id="addFields"
-                  color="pink"
+                  color="secondary"
                   @click="addFields()"
                 >
                   <v-icon dark>restaurant</v-icon>

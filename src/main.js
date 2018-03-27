@@ -12,7 +12,12 @@ import Alert from './components/Shared/Alert.vue'
 import EditMeetupModal from './components/Meetup/Edit/EditMeetupModal.vue'
 import RegisterModal from './components/Meetup/Register/RegisterModal.vue'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#0E1C62',
+    secondary: '#FF0066'
+  }
+})
 Vue.config.productionTip = false
 Vue.component('app-alert', Alert)
 Vue.component('edit-modal', EditMeetupModal)

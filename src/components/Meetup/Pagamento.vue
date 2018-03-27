@@ -1,5 +1,21 @@
 <template>
-  <v-flex xs12 sm6 offset-sm3 class="pt-3">
+  <v-flex xs12 sm6 offset-sm3>
+    <v-card>
+      <v-card-title>
+        <div class="subheading">Pedido:</div>
+      </v-card-title>
+      <v-card-text>
+        <div 
+          class="title"
+          v-for="pedido in this.$store.pedidoParaPagamento"
+          :key="pedido.nome"
+        >
+          <div>{{ pedido.quantidade }} {{ pedido.nome }} - R${{ pedido.preco }}</div>
+          <div v-for="soma in pedido.quantidade" :key="soma">olar: {{ soma }} </div>
+          <!-- total: {{ parseInt(pedido.quantidade) * parseInt(pedido.preco) }} -->
+        </div>
+      </v-card-text>
+    </v-card>
     <v-card>
       <v-card-title>
         <div class="subheading">Como deseja pagar?</div>
@@ -91,7 +107,7 @@
     {{ this.trocoQuantidade }}
     {{ this.toggle_pagamento }}
     {{ this.$store.pedidoParaPagamento }}
-    {{ this.$store.restauranteDoPedido }}
+    <!-- {{ this.$store.restauranteDoPedido }} -->
   </v-flex>
 </template>
 

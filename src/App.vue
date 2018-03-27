@@ -23,11 +23,11 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app color="light-blue" dark>
+    <v-toolbar app color="primary" dark>
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link
-          to="/home"
+          to="/restaurantes"
           tag="span"
           style="cursor: pointer"
         >
